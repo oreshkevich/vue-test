@@ -4,13 +4,53 @@
       <div class="container">
         <div class="product__wrapper grid">
           <div class="product__item picture">
-            <img src="../assets/img/boy.jpg" alt="boy" />
+            <img v-if="isElVisible" src="../assets/img/boy.jpg" alt="boy" />
+            <img
+              v-if="isElVisibleOne"
+              src="../assets/img/boy-girl-2.jpg"
+              alt="boy"
+            />
+            <img
+              v-if="isElVisibleTwo"
+              src="../assets/img/boy-girl-3.jpg"
+              alt="boy"
+            />
+            <img
+              v-if="isElVisibleThree"
+              src="../assets/img/boy-girl-4.jpg"
+              alt="boy"
+            />
+            <img
+              v-if="isElVisibleFour"
+              src="../assets/img/boy-girl-5.jpg"
+              alt="boy"
+            />
             <div class="product__item-picture">
-              <img src="../assets/img/boy-1.jpg" alt="boy" />
-              <img src="../assets/img/boy-2.jpg" alt="boy" />
-              <img src="../assets/img/boy-3.jpg" alt="boy" />
-              <img src="../assets/img/boy-4.jpg" alt="boy" />
-              <img src="../assets/img/boy-5.jpg" alt="boy" />
+              <img
+                @click="toggleElement"
+                src="../assets/img/boy-1.jpg"
+                alt="boy"
+              />
+              <img
+                @click="toggleElementOne"
+                src="../assets/img/boy-2.jpg"
+                alt="boy"
+              />
+              <img
+                @click="toggleElementTwo"
+                src="../assets/img/boy-3.jpg"
+                alt="boy"
+              />
+              <img
+                @click="toggleElementThree"
+                src="../assets/img/boy-4.jpg"
+                alt="boy"
+              />
+              <img
+                @click="toggleElementFour"
+                src="../assets/img/boy-5.jpg"
+                alt="boy"
+              />
             </div>
           </div>
           <div class="product__item choice">
@@ -86,9 +126,9 @@
               </div>
               <div class="choice__info-buy">
                 <div class="quantity">
-                  <button class="plus">+</button>
-                  <span class="">1</span>
-                  <button class="minus">-</button>
+                  <button class="plus" v-on:click="counter++">+</button>
+                  <span class="">{{ counter }}</span>
+                  <button class="minus" v-on:click="counterValue">-</button>
                 </div>
                 <a class="choice__btn-add">Добавить в корзину</a>
                 <button class="choice__btn-add choice__btn_heart">
@@ -120,7 +160,11 @@
         </div>
         <div class="product__wrapper grid-main">
           <div class="product__item">
-            <img src="../assets/img/girl.jpg" alt="boy" />
+            <img
+              class="product__item-img"
+              src="../assets/img/girl.jpg"
+              alt="boy"
+            />
           </div>
           <div class="product__item product__item_grid">
             <img src="../assets/img/girl-1.jpg" alt="girl" />
@@ -137,6 +181,56 @@
 <script>
 export default {
   name: 'McvMain',
+  data() {
+    return {
+      counter: 1,
+      isElVisible: true,
+      isElVisibleOne: false,
+      isElVisibleTwo: false,
+      isElVisibleThree: false,
+      isElVisibleFour: false,
+    }
+  },
+  methods: {
+    toggleElement() {
+      this.isElVisible = true
+      this.isElVisibleOne = false
+      this.isElVisibleTwo = false
+      this.isElVisibleThree = false
+      this.isElVisibleFour = false
+    },
+    toggleElementOne() {
+      this.isElVisible = false
+      this.isElVisibleOne = true
+      this.isElVisibleTwo = false
+      this.isElVisibleThree = false
+      this.isElVisibleFour = false
+    },
+    toggleElementTwo() {
+      this.isElVisible = false
+      this.isElVisibleOne = false
+      this.isElVisibleTwo = true
+      this.isElVisibleThree = false
+      this.isElVisibleFour = false
+    },
+    toggleElementThree() {
+      this.isElVisible = false
+      this.isElVisibleOne = false
+      this.isElVisibleTwo = false
+      this.isElVisibleThree = true
+      this.isElVisibleFour = false
+    },
+    toggleElementFour() {
+      this.isElVisible = false
+      this.isElVisibleOne = false
+      this.isElVisibleTwo = false
+      this.isElVisibleThree = false
+      this.isElVisibleFour = true
+    },
+    counterValue() {
+      this.counter > 0 ? this.counter-- : 0
+    },
+  },
 }
 </script>
 
@@ -238,7 +332,7 @@ export default {
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  grid-template-areas: 'main aside';
+  grid-template-areas: 'one two';
 }
 .grid {
   height: 100%;
@@ -246,7 +340,7 @@ export default {
   grid-gap: 20px;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr;
-  grid-template-areas: 'main aside';
+  grid-template-areas: 'one two';
 }
 .choice__art {
   padding-top: 9px;
@@ -428,12 +522,6 @@ export default {
   transform: translate(-3px, -50%) rotate(45deg);
 }
 
-/* .order-checkout__button_left::before {
-  background-image: url('./../assets/svg/minus.svg');
-  background-position: center;
-  background-repeat: no-repeat;
-  left: 0;
-} */
 .order-checkout__select[data-state='active']
   .order-checkout__select_title::before {
   -webkit-transform: translate(-3px, -50%) rotate(-45deg);
@@ -575,13 +663,17 @@ hr {
 .product__item_grid {
   display: grid;
   gap: 14px 9px;
-  grid-template-columns: repeat(auto-fit, minmax(335px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(17.4479166667vw, 1fr));
 }
 .product__item_grid img {
   object-fit: cover;
 }
 .picture {
   position: relative;
+}
+.picture img {
+  width: 100%;
+  object-fit: cover;
 }
 .product__item-picture {
   position: absolute;
@@ -590,5 +682,42 @@ hr {
 }
 .product__item-picture img {
   margin-bottom: 7px;
+  cursor: pointer;
+}
+
+@media (max-width: 876px) {
+  .grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      'one'
+      'two';
+  }
+
+  .grid-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      'one'
+      'two';
+  }
+  .product__item-img {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  @media (max-width: 876px) {
+    .product__item_grid {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    }
+  }
+
+  @media (max-width: 876px) {
+    .main {
+      padding-top: 10px;
+      padding-bottom: 20px;
+    }
+  }
+  @media (max-width: 400px) {
+  }
 }
 </style>

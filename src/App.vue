@@ -100,4 +100,9 @@ button {
   margin: 0 auto;
   padding: 0 15px;
 }
+@media (max-width: 876px) {
+  .container {
+    max-width: 800px;
+  }
+}
 </style>

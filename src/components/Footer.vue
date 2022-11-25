@@ -43,8 +43,8 @@
             <h3 class="footer__nav-link">
               Узнайте первыми о новинках и акциях
             </h3>
-            <form class="form" action="post">
-              <div class="form__wrapper">
+            <form class="form" action="post" @submit="submitHandler">
+              <div class="form__wrapper" :class="{invalid: errors.name}">
                 <input
                   type="email"
                   id="email"
@@ -53,8 +53,9 @@
                   required=""
                   class="form__input"
                   placeholder="Адрес электронной почты"
-                  value=""
+                  v-model.trim="name"
                 />
+                <small v-if="errors.name">{{ errors.name }}</small>
                 <button class="btn-reset"></button>
                 <button type="submit" class="footer__link">Подписаться</button>
               </div>
@@ -69,6 +70,34 @@
 <script>
 export default {
   name: 'McvFooter',
+  data() {
+    return {
+      name: '',
+      errors: {
+        name: null,
+      },
+    }
+  },
+  methods: {
+    formIsValid() {
+      const res =
+        /^([a-zA-Z][a-zA-Z0-9-_]{2,15})*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/
+      let isValid = true
+      if (!res.test(this.name)) {
+        this.errors.name = 'Введите корректный emal'
+        isValid = false
+      } else {
+        this.errors.name = null
+      }
+      return isValid
+    },
+    submitHandler(event) {
+      event.preventDefault()
+      if (this.formIsValid()) {
+        console.log('форма отправлена')
+      }
+    },
+  },
 }
 </script>
 
@@ -77,6 +106,7 @@ export default {
   display: grid;
   grid-template-columns: 448px 333px 1fr;
   grid-template-rows: 1fr;
+  grid-template-areas: 'one two three';
   grid-gap: 20px;
 }
 .footer__nav-link {
@@ -165,5 +195,57 @@ export default {
 }
 .footer__subnav-link:hover {
   color: #58862d;
+}
+.form__wrapper small {
+  display: block;
+  color: red;
+}
+.form__wrapper.invalid input {
+  border-color: red;
+}
+@media (max-width: 1300px) {
+  .grid__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: 'one two three';
+    grid-gap: 20px;
+  }
+  .footer__nav_catalog {
+    padding-left: 20px;
+  }
+}
+@media (max-width: 876px) {
+  .grid__body {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      'one two'
+      'three';
+    grid-gap: 20px;
+  }
+  .form__input {
+    width: 375px;
+  }
+}
+@media (max-width: 700px) {
+  .grid__body {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+      'one two'
+      'three three';
+    grid-gap: 20px;
+  }
+  .grid__item:last-child {
+    grid-column: span 2;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    align-items: center;
+  }
+  .form__wrapper {
+    padding-top: 2px;
+  }
 }
 </style>
