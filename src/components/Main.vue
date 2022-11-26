@@ -1,5 +1,20 @@
 <template>
   <main class="main">
+    <v-popup
+      v-if="isInfoPopupVisible"
+      rightBtnTitle="Add to cart"
+      @closePopup="closeInfoPopup"
+      @rightBtnAction="addToCart"
+    >
+      <div>
+        <p class="v-catalog-item__name">Товар: Пижама для девочек</p>
+        <p class="v-catalog-item__price">Арт. 02765/46</p>
+        <p class="v-catalog-item__price">Цена: 1 500 ₽</p>
+        <p class="v-catalog-item__price">
+          В количестве {{ counter }} единиц добавлен в корзину/избранное
+        </p>
+      </div>
+    </v-popup>
     <section class="product">
       <div class="container">
         <div class="product__wrapper grid">
@@ -131,10 +146,15 @@
                   <button class="minus" v-on:click="counterValue">-</button>
                 </div>
                 <div class="choice__button">
-                  <a class="choice__btn-add choice__btn_bag"
+                  <a
+                    class="choice__btn-add choice__btn_bag"
+                    @click="showPopupInfo"
                     >Добавить в корзину</a
                   >
-                  <button class="choice__btn-add choice__btn_heart">
+                  <button
+                    class="choice__btn-add choice__btn_heart"
+                    @click="showPopupInfo"
+                  >
                     <img src="../assets/svg/heart.svg" alt="heart" />
                   </button>
                 </div>
@@ -183,7 +203,12 @@
 </template>
 
 <script>
+import vPopup from './Popup.vue'
 export default {
+  components: {
+    vPopup,
+  },
+
   name: 'McvMain',
   data() {
     return {
@@ -193,6 +218,7 @@ export default {
       isElVisibleTwo: false,
       isElVisibleThree: false,
       isElVisibleFour: false,
+      isInfoPopupVisible: false,
     }
   },
   methods: {
@@ -233,6 +259,13 @@ export default {
     },
     counterValue() {
       this.counter > 0 ? this.counter-- : 0
+    },
+
+    showPopupInfo() {
+      this.isInfoPopupVisible = true
+    },
+    closeInfoPopup() {
+      this.isInfoPopupVisible = false
     },
   },
 }
@@ -750,6 +783,9 @@ hr {
   .product__item_grid {
     grid-template-columns: repeat(auto-fit, minmax(122px, 1fr));
     gap: 8px 8px;
+  }
+  .v-popup {
+    width: 351px;
   }
 }
 </style>
