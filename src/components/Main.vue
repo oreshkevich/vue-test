@@ -19,24 +19,24 @@
       <div class="container">
         <div class="product__wrapper grid">
           <div class="product__item picture">
-            <img v-if="isElVisible" src="../assets/img/boy.jpg" alt="boy" />
+            <img v-show="isElVisible" src="../assets/img/boy.jpg" alt="boy" />
             <img
-              v-if="isElVisibleOne"
+              v-show="isElVisibleOne"
               src="../assets/img/boy-girl-2.jpg"
               alt="boy"
             />
             <img
-              v-if="isElVisibleTwo"
+              v-show="isElVisibleTwo"
               src="../assets/img/boy-girl-3.jpg"
               alt="boy"
             />
             <img
-              v-if="isElVisibleThree"
+              v-show="isElVisibleThree"
               src="../assets/img/boy-girl-4.jpg"
               alt="boy"
             />
             <img
-              v-if="isElVisibleFour"
+              v-show="isElVisibleFour"
               src="../assets/img/boy-girl-5.jpg"
               alt="boy"
             />
@@ -783,9 +783,6 @@ hr {
   .product__item_grid {
     grid-template-columns: repeat(auto-fit, minmax(122px, 1fr));
     gap: 8px 8px;
-  }
-  .v-popup {
-    width: 351px;
   }
 }
 </style>
