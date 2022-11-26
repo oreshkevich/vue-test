@@ -236,7 +236,7 @@ export default {
 
 <style scoped>
 .main {
-  padding-top: 25px;
+  padding-top: 66px;
   padding-bottom: 144px;
 }
 .product__wrapper {
