@@ -231,7 +231,7 @@ export default {
     margin-right: 49px;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 460px) {
   .logo {
     padding-left: 20px;
   }

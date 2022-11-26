@@ -748,7 +748,7 @@ hr {
     padding-bottom: 38px;
   }
 }
-@media (max-width: 400px) {
+@media (max-width: 460px) {
   .product__item-picture img {
     max-width: 40px;
     margin-bottom: 5px;
@@ -780,6 +780,13 @@ hr {
     margin-top: 58px;
     margin-bottom: 58px;
   }
+
+  .product__item_grid[data-v-54d3a52e] {
+    grid-template-columns: repeat(auto-fit, minmax(139px, 1fr));
+    gap: 8px 8px;
+  }
+}
+@media (max-width: 400px) {
   .product__item_grid {
     grid-template-columns: repeat(auto-fit, minmax(122px, 1fr));
     gap: 8px 8px;

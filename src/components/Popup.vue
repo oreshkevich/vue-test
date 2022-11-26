@@ -108,8 +108,9 @@ export default {
   text-transform: uppercase;
   color: #fff;
 }
-
-.v-popup {
-  width: 351px;
+@media (max-width: 460px) {
+  .v-popup {
+    width: 351px;
+  }
 }
 </style>
