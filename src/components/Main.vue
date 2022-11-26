@@ -130,10 +130,14 @@
                   <span class="">{{ counter }}</span>
                   <button class="minus" v-on:click="counterValue">-</button>
                 </div>
-                <a class="choice__btn-add">Добавить в корзину</a>
-                <button class="choice__btn-add choice__btn_heart">
-                  <img src="../assets/svg/heart.svg" alt="heart" />
-                </button>
+                <div class="choice__button">
+                  <a class="choice__btn-add choice__btn_bag"
+                    >Добавить в корзину</a
+                  >
+                  <button class="choice__btn-add choice__btn_heart">
+                    <img src="../assets/svg/heart.svg" alt="heart" />
+                  </button>
+                </div>
               </div>
               <div class="checkout-info__link">
                 <a href="#" class="checkout-info__buy"> Купить в 1 клик </a>
@@ -277,6 +281,7 @@ export default {
   line-height: 20px;
   letter-spacing: 0.04em;
   color: #333333;
+  padding: 1px;
 }
 .quantity span {
   width: 45px;
@@ -291,14 +296,7 @@ export default {
   letter-spacing: 0.04em;
   color: #333333;
 }
-.choice__btn-add {
-  width: 106px;
-  font-weight: 700;
-  font-size: 14px;
-  line-height: 130%;
-  color: #fff;
-  background-image: none;
-}
+
 .choice__btn-add {
   margin-left: 11px;
   position: relative;
@@ -314,8 +312,10 @@ export default {
   color: #ffffff;
   background: #333333;
   border: 1px solid #333333;
-  width: 208px;
   height: 44px;
+}
+.choice__btn_bag {
+  width: 208px;
 }
 .choice__btn-add:hover {
   background: #7e7777;
@@ -423,7 +423,9 @@ export default {
   letter-spacing: 0.04em;
   color: #333333;
 }
-
+.choice__button {
+  display: flex;
+}
 .choice__discounts-button:hover {
   border-color: #58862d;
 }
@@ -705,19 +707,49 @@ hr {
     margin-left: auto;
     margin-right: auto;
   }
-  @media (max-width: 876px) {
-    .product__item_grid {
-      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    }
+  .product__item_grid {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  .main {
+    padding-top: 59px;
+    padding-bottom: 38px;
+  }
+}
+@media (max-width: 400px) {
+  .product__item-picture img {
+    max-width: 40px;
+    margin-bottom: 5px;
   }
 
-  @media (max-width: 876px) {
-    .main {
-      padding-top: 10px;
-      padding-bottom: 20px;
-    }
+  .choice__wrap {
+    margin-top: 4px;
+    margin-left: 18px;
   }
-  @media (max-width: 400px) {
+  .choice__info-buy {
+    flex-direction: column;
+  }
+  .choice__button {
+    margin-top: 15px;
+  }
+  .choice__btn-add {
+    margin-left: 0px;
+  }
+  .choice__btn_bag {
+    width: 204px;
+  }
+  .choice__btn_heart {
+    margin-left: 4px;
+  }
+  .checkout-info__link {
+    margin-top: 21px;
+  }
+  .product__all-style {
+    margin-top: 58px;
+    margin-bottom: 58px;
+  }
+  .product__item_grid {
+    grid-template-columns: repeat(auto-fit, minmax(122px, 1fr));
+    gap: 8px 8px;
   }
 }
 </style>

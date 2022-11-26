@@ -1,6 +1,5 @@
 <template>
   <header class="header" ref="myHeader" :class="{hide: isHeader}">
-    <!-- :class="{hide: isHeader}" -->
     <div class="container">
       <div class="header__logo logo">
         <a href="#" class="logo__link">
@@ -26,7 +25,26 @@
             </li>
           </ul>
         </nav>
-
+        <div
+          class="nav-active"
+          :class="{vigorous: isActive}"
+          @click="toggleActive"
+        >
+          <ul class="nav__link">
+            <li>
+              <a href="#" class="navigation-link">постельное белье</a>
+            </li>
+            <li>
+              <a href="#" class="navigation-link">одежда для дома</a>
+            </li>
+            <li>
+              <a href="#" class="navigation-link">Одежда для улицы</a>
+            </li>
+            <li>
+              <a href="#" class="navigation-link">ВЫход</a>
+            </li>
+          </ul>
+        </div>
         <div
           class="hamburger"
           :class="{'hamburger-active': isActive}"
@@ -48,6 +66,7 @@ export default {
   data() {
     return {
       isActive: false,
+      isNavActive: false,
       reached: false,
       lastScroll: 0,
       defaultOffset: 60,
@@ -125,13 +144,49 @@ export default {
 .nav__link img {
   padding-left: 32px;
 }
-
+.navigation-link {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #333333;
+  display: flex;
+  padding-left: 30px;
+  padding-bottom: 30px;
+}
+.nav-active {
+  display: none;
+  position: absolute;
+  top: 0;
+  top: 0;
+  right: -100%;
+  width: 375px;
+  height: 277px;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: 0.6s all;
+}
 .hamburger {
   margin-top: -5px;
   display: none;
 }
 
 @media (max-width: 876px) {
+  .nav__link {
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 9px;
+    flex-direction: column;
+    padding: 0;
+    align-items: center;
+  }
+
+  .vigorous {
+    display: block;
+    right: 0;
+  }
   .hamburger {
     display: block;
     position: absolute;
@@ -174,6 +229,14 @@ export default {
   }
   .nav {
     margin-right: 49px;
+  }
+}
+@media (max-width: 400px) {
+  .logo {
+    padding-left: 20px;
+  }
+  .nav {
+    margin-right: 73px;
   }
 }
 </style>

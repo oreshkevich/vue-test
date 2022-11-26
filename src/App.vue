@@ -105,4 +105,10 @@ button {
     max-width: 800px;
   }
 }
+@media (max-width: 400px) {
+  .container {
+    max-width: 380px;
+    padding: 0 0px;
+  }
+}
 </style>

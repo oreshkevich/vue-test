@@ -235,17 +235,37 @@ export default {
     grid-template-areas:
       'one two'
       'three three';
-    grid-gap: 20px;
+    grid-gap: 8px;
   }
   .grid__item:last-child {
     grid-column: span 2;
-    margin-left: auto;
-    margin-right: auto;
     text-align: center;
     align-items: center;
   }
   .form__wrapper {
     padding-top: 2px;
+  }
+  .footer__nav-link {
+    padding-top: 52px;
+    max-width: 217px;
+  }
+  .form__wrapper {
+    padding-top: 17px;
+  }
+  .form__input {
+    padding: 7px 14px;
+  }
+  .btn-reset {
+    top: 35px;
+    right: 32px;
+  }
+  .footer__link {
+    margin-left: auto;
+    margin-right: 22px;
+    margin-top: 25px;
+  }
+  .form__input {
+    width: 335px;
   }
 }
 </style>
