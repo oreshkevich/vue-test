@@ -9,7 +9,7 @@
       <div>
         <p class="v-catalog-item__name">Товар: Пижама для девочек</p>
         <p class="v-catalog-item__price">Арт. 02765/46</p>
-        <p class="v-catalog-item__price">Цена: 1 500 ₽</p>
+        <p class="v-catalog-item__price">Цена: 800 ₽</p>
         <p class="v-catalog-item__price">
           В количестве {{ counter }} единиц добавлен в корзину/избранное
         </p>
