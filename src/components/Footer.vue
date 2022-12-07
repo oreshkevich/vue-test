@@ -1,5 +1,6 @@
 <template>
   <footer class="footer">
+    <v-notification :messages="messages" />
     <div class="grid">
       <div class="container">
         <div class="grid__body">
@@ -56,10 +57,11 @@
                   v-model.trim="name"
                 />
                 <small v-if="errors.name">{{ errors.name }}</small>
-                <button class="btn-reset"></button>
+                <button class="btn-reset" @click="close"></button>
                 <button type="submit" class="footer__link">Подписаться</button>
               </div>
             </form>
+            <div class="v-catalog__list"></div>
           </div>
         </div>
       </div>
@@ -68,16 +70,22 @@
 </template>
 
 <script>
+import vNotification from './notifications/v-notification'
 export default {
   name: 'McvFooter',
+  components: {
+    vNotification,
+  },
   data() {
     return {
       name: '',
       errors: {
         name: null,
       },
+      messages: [],
     }
   },
+
   methods: {
     formIsValid() {
       const res =
@@ -95,7 +103,20 @@ export default {
       event.preventDefault()
       if (this.formIsValid()) {
         console.log('форма отправлена')
+        this.addToCart()
+        this.name = ''
       }
+    },
+    close() {
+      this.name = ''
+    },
+    addToCart() {
+      let timeStamp = Date.now().toLocaleString()
+      this.messages.unshift({
+        name: 'Вы подпианы',
+        icon: 'check_circle',
+        id: timeStamp,
+      })
     },
   },
 }

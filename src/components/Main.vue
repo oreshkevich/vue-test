@@ -4,7 +4,6 @@
       v-if="isInfoPopupVisible"
       rightBtnTitle="Add to cart"
       @closePopup="closeInfoPopup"
-      @rightBtnAction="addToCart"
     >
       <div>
         <p class="v-catalog-item__name">Товар: Пижама для девочек</p>
@@ -19,10 +18,14 @@
       <div class="container">
         <div class="product__wrapper grid">
           <div class="product__item picture">
-            <img v-show="isElVisible" src="../assets/img/boy.jpg" alt="boy" />
+            <img
+              v-show="isElVisible"
+              src="../assets/img/boy-girl-2.jpg"
+              alt="boy"
+            />
             <img
               v-show="isElVisibleOne"
-              src="../assets/img/boy-girl-2.jpg"
+              src="../assets/img/boy.jpg"
               alt="boy"
             />
             <img
@@ -43,12 +46,12 @@
             <div class="product__item-picture">
               <img
                 @click="toggleElement"
-                src="../assets/img/boy-1.jpg"
+                src="../assets/img/boy-2.jpg"
                 alt="boy"
               />
               <img
                 @click="toggleElementOne"
-                src="../assets/img/boy-2.jpg"
+                src="../assets/img/boy-1.jpg"
                 alt="boy"
               />
               <img
@@ -108,31 +111,20 @@
                   class="order-checkout__select input-form-select"
                   data-state=""
                 >
-                  <div
-                    class="order-checkout__select_title"
-                    data-default="Option 0"
-                  >
-                    Выбрать размер
-                  </div>
-                  <div class="order-checkout__select_content">
-                    <input
-                      id="singleSelect0"
-                      class="order-checkout__select_input"
-                      type="radio"
-                      name="singleSelect"
-                      checked=""
-                    />
-                    <label
-                      for="singleSelect0"
-                      class="order-checkout__select_label"
-                      >размер</label
+                  <div id="v-model-select-dynamic">
+                    <select
+                      v-model="selected"
+                      class="order-checkout__select_title"
                     >
-                    <input
-                      id="singleSelect1"
-                      class="order-checkout__select_input"
-                      type="radio"
-                      name="singleSelect"
-                    />
+                      <option
+                        v-for="option in options"
+                        :key="option.value"
+                        v-bind:value="option.value"
+                      >
+                        {{ option.text }}
+                      </option>
+                    </select>
+                    <span>Selected: {{ selected }}</span>
                   </div>
                 </div>
               </div>
@@ -191,10 +183,47 @@
             />
           </div>
           <div class="product__item product__item_grid">
-            <img src="../assets/img/girl-1.jpg" alt="girl" />
-            <img src="../assets/img/girl-2.jpg" alt="girl" />
+            <!-- <img src="../assets/img/girl-2.jpg" alt="girl" />
             <img src="../assets/img/girl-3.jpg" alt="girl" />
-            <img src="../assets/img/girl-4.jpg" alt="girl" />
+            <img src="../assets/img/girl-4.jpg" alt="girl" /> -->
+            <ul class="hover-effect-cover">
+              <li>
+                <img src="../assets/img/girl-1.jpg" alt="" />
+                <div class="effect-to-right">
+                  <!-- Выезжающая панель слева направо -->
+                  <h3>Картинка 1</h3>
+                  <p>Узнай что на мне</p>
+                  <a href="">Подробнее</a>
+                </div>
+              </li>
+              <li>
+                <img src="../assets/img/girl-2.jpg" alt="" />
+                <div class="effect-to-left">
+                  <!-- Выезжающая панель справа налево -->
+                  <h3>Картинка 2</h3>
+                  <p>Узнай что на мне</p>
+                  <a href="">Подробнее</a>
+                </div>
+              </li>
+              <li>
+                <img src="../assets/img/girl.jpg" alt="" />
+                <div class="effect-to-top">
+                  <!-- Выезжающая панель снизу вверх -->
+                  <h3>Картинка 3</h3>
+                  <p>Узнай что на мне</p>
+                  <a href="">Подробнее</a>
+                </div>
+              </li>
+              <li>
+                <img src="../assets/img/girl-4.jpg" alt="" />
+                <div class="effect-to-bottom">
+                  <!-- Выезжающая панель сверху вниз -->
+                  <h3>Картинка 4</h3>
+                  <p>Узнай что на мне</p>
+                  <a href="">Подробнее</a>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -219,6 +248,13 @@ export default {
       isElVisibleThree: false,
       isElVisibleFour: false,
       isInfoPopupVisible: false,
+      selected: '',
+      options: [
+        {text: 'Выбирите размер', value: ''},
+        {text: 'Размер 1', value: '1'},
+        {text: 'Размер 2', value: '2'},
+        {text: 'Размер 3', value: '3'},
+      ],
     }
   },
   methods: {
@@ -718,6 +754,152 @@ hr {
 .product__item-picture img {
   margin-bottom: 7px;
   cursor: pointer;
+}
+
+/* Настройки маркированного списка */
+.hover-effect-cover {
+  list-style: none;
+  margin: 0 auto;
+  width: 100%;
+  text-align: center;
+  padding: 0;
+}
+.hover-effect-cover li {
+  position: relative;
+  width: 49%; /* Задаем ширину элемента списка с картинкой*/
+  display: inline-block;
+  background-color: #fff;
+  margin: 0;
+  border: 5px solid #fff;
+  box-shadow: 1px 3px 1px 0 rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+/* Заголовок, текст и ссылка */
+.hover-effect-cover li h3 {
+  color: #fff;
+  margin: 5px;
+}
+.hover-effect-cover li p {
+  color: #fff;
+  margin: 5px;
+}
+.hover-effect-cover li a {
+  display: block;
+  text-decoration: none;
+  padding: 15px;
+  color: #fff;
+  background: #000;
+  border-radius: 5px;
+  margin: 0 auto;
+  transition: all 0.4s ease-in-out;
+}
+.hover-effect-cover li a:hover {
+  background: #454545;
+  color: #fff;
+}
+/* Выезжающий блок с текстом для панели слева направо */
+.hover-effect-cover li > div.effect-to-right {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.hover-effect-cover li:hover > div.effect-to-right {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+.hover-effect-cover li div.effect-to-right {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Фон блока при наведении */
+  transition: all 0.4s ease-in-out;
+  color: #fff;
+  transform: translate(-250px, 0px) rotate(0deg); /* Направление выезжающей панели */
+}
+.hover-effect-cover li:hover div.effect-to-right {
+  opacity: 1;
+  transform: translate(0px, 0px) rotate(0deg);
+}
+/* Выезжающий блок с текстом для панели справа налево */
+.hover-effect-cover li > div.effect-to-left {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.hover-effect-cover li:hover > div.effect-to-left {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+.hover-effect-cover li div.effect-to-left {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Фон блока при наведении */
+  transition: all 0.4s ease-in-out;
+  color: #fff;
+  transform: translate(250px, 0px) rotate(0deg); /* Направление выезжающей панели */
+}
+.hover-effect-cover li:hover div.effect-to-left {
+  opacity: 1;
+  transform: translate(0px, 0px) rotate(0deg);
+}
+/* Выезжающий блок с текстом для панели снизу вверх */
+.hover-effect-cover li > div.effect-to-top {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.hover-effect-cover li:hover > div.effect-to-top {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+.hover-effect-cover li div.effect-to-top {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Фон блока при наведении */
+  transition: all 0.4s ease-in-out;
+  color: #fff;
+  transform: translate(0px, 250px) rotate(0deg); /* Направление выезжающей панели */
+}
+.hover-effect-cover li:hover div.effect-to-top {
+  opacity: 1;
+  transform: translate(0px, 0px) rotate(0deg);
+}
+/* Выезжающий блок с текстом для панели сверху вниз */
+.hover-effect-cover li > div.effect-to-bottom {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.hover-effect-cover li:hover > div.effect-to-bottom {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+.hover-effect-cover li div.effect-to-bottom {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.3); /* Фон блока при наведении */
+  transition: all 0.4s ease-in-out;
+  color: #fff;
+  transform: translate(0px, -250px) rotate(0deg); /* Направление выезжающей панели */
+}
+.hover-effect-cover li:hover div.effect-to-bottom {
+  opacity: 1;
+  transform: translate(0px, 0px) rotate(0deg);
 }
 
 @media (max-width: 876px) {

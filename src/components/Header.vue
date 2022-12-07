@@ -9,19 +9,19 @@
         <nav class="header__nav nav">
           <ul class="nav__item">
             <li>
-              <a href="#" class="nav__link">
-                <img src="../assets/svg/person.svg" alt="" />
-              </a>
+              <router-link to="/" class="nav__link">
+                <img src="../assets/svg/person.svg" alt="home" />
+              </router-link>
             </li>
             <li>
-              <a href="#" class="nav__link"
-                ><img src="../assets/svg/like.svg" alt=""
-              /></a>
+              <router-link to="/about" class="nav__link"
+                ><img src="../assets/svg/like.svg" alt="about" />
+              </router-link>
             </li>
             <li>
-              <a href="#" class="nav__link"
-                ><img src="../assets/svg/bag.svg" alt=""
-              /></a>
+              <router-link to="/cart" class="nav__link">
+                <img src="../assets/svg/bag.svg" alt="cart" />
+              </router-link>
             </li>
           </ul>
         </nav>
@@ -237,6 +237,11 @@ export default {
   }
   .nav {
     margin-right: 73px;
+  }
+}
+@media (max-width: 375px) {
+  .nav-active {
+    width: 280px;
   }
 }
 </style>

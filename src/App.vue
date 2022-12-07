@@ -1,24 +1,15 @@
 <template>
   <div id="app">
-    <div class="wrapper">
-      <McvHeader />
-      <McvMain />
-      <McvFooter />
-    </div>
+    <v-main-wrapper />
   </div>
 </template>
 
 <script>
-import McvHeader from './components/Header.vue'
-import McvMain from './components/Main.vue'
-import McvFooter from './components/Footer.vue'
-
+import vMainWrapper from './components/v-main-wrapper'
 export default {
   name: 'App',
   components: {
-    McvHeader,
-    McvMain,
-    McvFooter,
+    vMainWrapper,
   },
 }
 </script>
@@ -39,9 +30,9 @@ body {
   font-style: normal;
   margin-left: auto;
   margin-right: auto;
-  -o-object-fit: cover;
   object-fit: cover;
   background-color: #fff;
+  height: 100%;
 }
 
 .wrapper {
@@ -100,6 +91,7 @@ button {
   margin: 0 auto;
   padding: 0 15px;
 }
+
 @media (max-width: 876px) {
   .container {
     max-width: 800px;
