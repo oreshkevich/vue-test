@@ -107,6 +107,7 @@ export default {
 <style scoped>
 .header {
   padding: 12px 0;
+  background-color: #ffffff;
 }
 .header__title {
   font-family: 'Open Sans';
